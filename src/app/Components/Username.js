@@ -1,6 +1,6 @@
-let Username = (props) => {
-  console.log(props.name);
-  return <div>{props.name}</div>;
-};
+// let Username = (props) => {
+//   console.log(props.name);
+//   return <div>{props.name}</div>;
+// };
 
-export default Username;
+// export default Username;

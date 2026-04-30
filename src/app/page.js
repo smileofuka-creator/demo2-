@@ -2,15 +2,39 @@
 // import { ViewIcon } from "lucide-react";
 
 // import Username from "./Components/Username";
-import Hairtsag from "./Components/box";
+// import Hairtsag from "./Components/box";
+// import logo from "./mmm.jpeg";
+import { Eye } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const Home = () => {
   return (
-    <div className="flex gap-[3px]">
-      <Hairtsag color="red" name="Red"></Hairtsag>
-      <Hairtsag color="blue" name="Green"></Hairtsag>
-      <Hairtsag name="Blue"></Hairtsag>
+    <div className="w-[200px] h-[320px] border flex flex-col justify-between p-4 rounded-[8px] bg-center bg-cover ">
+      {/* <img src="/images/mmm.jpeg" alt="" /> */}
+      {/* <div className="bg-[url('/path/to/')] bg-cover bg-center h-64"></div> */}
+      <div className="flex justify-between">
+        <p>.</p>
+        <div>min</div>
+      </div>
+      <div>
+        <div className="flex items-center gap-2 ">
+          <Eye size={18} />
+          <span className="text-x">2000</span>
+          <MessageCircle size={18} />
+          <span className="text-x">0</span>
+        </div>
+        <h4 className="text-xs">
+          Unread туршив: Тоглоомын дүрмийг өөрчлөх 600 долларын үнэтэй macbook
+        </h4>
+        <label className="bg-blue-400 round-[8px]">Techworm</label>
+      </div>
     </div>
+
+    // <div className="flex gap-[3px]">
+    //   <Hairtsag color="red" name="Red"></Hairtsag>
+    //   <Hairtsag color="blue" name="Green"></Hairtsag>
+    //   <Hairtsag color="yellow" name="Blue"></Hairtsag>
+    // </div>
 
     // <>
     //   <Username name="bataa"></Username>
