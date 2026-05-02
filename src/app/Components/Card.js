@@ -3,15 +3,13 @@
 // import Image from "next/image";
 // import Link from "next/link";
 
-let Card = (props) => {
-  return (
+// let Card = (props) => {
+//   return (
 
-  );
-};
+//   );
+// };
 
-export default Card;
-
-
+// export default Card;
 
 //  <div className="w-[200px] h-[320px] border flex flex-col justify-between p-4 rounded-[8px] relative">
 //       {/* <div className="min-w-[200px] min-h-[320px] absolute left-0 top-0 -z-10 rounded-[8px] bg-no-repeat bg-contain border bg-[url('/mmm.jpeg')] "></div> */}
