@@ -8,63 +8,69 @@
 // import { MessageCircle } from "lucide-react";
 // import Card from "./Components/Card";
 
-import Button from "./Components/Button";
-import Task from "./Components/Task";
+// import Button from "./Components/Button";
+// import Task from "./Components/Task";
 
-const Home = () => {
-  let array = [
-    { title: "All", status: true },
-    { title: "Active", status: false },
-    { title: "Completed", status: true },
-  ];
-  const task = [
-    {
-      title: "task",
-      isChecked: false,
-    },
-    {
-      title: "task",
-      isChecked: false,
-    },
-    {
-      title: "task",
-      isChecked: false,
-    },
-  ];
-  return (
-    <div className="p-10 bg-gray-50 min-h-screen">
-      <div className="flex gap-[10px]">
-        <input
-          className="w-[280px] h-[40px] rounded-[6px] p-[6px] bg-white border border-black text-black"
-          placeholder="Add a new task .."
-        />
-        <button className="width-[59px] h-[40px] rounded-[6px] p-[8px] gap-[10px] bg-blue-500 text-white">
-          Add
-        </button>
-      </div>
-      <div className="flex gap-[24px] ">
-        {array.map((element, index) => {
-          return (
-            <Button title={element.title} key={index} status={element.status} />
-          );
-        })}
-      </div>
-      <div className="flex flex-col gap-4">
-        {task.map((element, index) => {
-          return (
-            <Task
-              title={element.title}
-              key={index}
-              isChecked={element.isChecked}
-            />
-          );
-        })}
-        {/* <Task title={"hello"} isChecked={true}></Task> */}
-      </div>
-    </div>
-  );
-};
-export default Home;
+// const Home = () => {
+//   let array = [
+//     { title: "All", status: true },
+//     { title: "Active", status: false },
+//     { title: "Completed", status: true },
+//   ];
+//   const task = [
+//     {
+//       title: "task",
+//       isChecked: true,
+//     },
+//     {
+//       title: "task",
+//       isChecked: false,
+//     },
+//     {
+//       title: "Chi yu genee",
+//       isChecked: false,
+//     },
+//   ];
+
+//   return (
+//     <div className="h-screen w-screen bg-white">
+//       <div className="p-10 bg-gray-50 min-h-screen  w-[377px] h-[290px] px-[16px] py-[24px] ">
+//         <div className="flex gap-[10px]">
+//           <input
+//             className="w-[280px] h-[40px] rounded-[6px] p-[6px] bg-white border border-black text-black"
+//             placeholder="Add a new task .."
+//           />
+//           <button className="width-[59px] h-[40px] rounded-[6px] p-[8px] gap-[10px] bg-blue-500 text-white">
+//             Add
+//           </button>
+//         </div>
+//         <div className="flex gap-[24px] ">
+//           {array.map((element, index) => {
+//             return (
+//               <Button
+//                 title={element.title}
+//                 key={index}
+//                 status={element.status}
+//               />
+//             );
+//           })}
+//         </div>
+//         <div className="flex flex-col gap-4">
+//           {task.map((element, index) => {
+//             return (
+//               <Task
+//                 title={element.title}
+//                 key={index}
+//                 isChecked={element.isChecked}
+//               />
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+// export default Home;
 
 // isChecked={true}
 
@@ -151,3 +157,81 @@ export default Home;
 //   );
 // };
 // export default Home;
+"use client";
+import { useState } from "react"; // 1. useState-ийг импортлох
+import Button from "./Components/Button";
+import Task from "./Components/Task";
+
+const Home = () => {
+  const [categories, setCategories] = useState([
+    { title: "All", status: true },
+    { title: "Active", status: false },
+    { title: "Completed", status: true },
+  ]);
+
+  const [tasks, setTasks] = useState([
+    { title: "task", isChecked: true },
+    { title: "Chi yu genee", isChecked: false },
+  ]);
+
+  // 3. Input доторх бичвэрийг хадгалах State
+  const [inputValue, setInputValue] = useState("");
+
+  const deleteTask = (indexToRead) => {
+    // filter ашиглан зөвхөн сонгогдоогүй индексүүдийг шинэ массивт авна
+    const newTasks = tasks.filter((_, index) => index !== indexToRead);
+    setTasks(newTasks);
+  };
+
+  const addTask = () => {
+    if (inputValue.trim() === "") return;
+
+    const newTask = {
+      title: inputValue,
+      isChecked: false,
+    };
+
+    setTasks([...tasks, newTask]);
+    setInputValue("");
+  };
+
+  return (
+    <div className="h-screen w-screen bg-white">
+      <div className="p-10 bg-gray-50 min-h-screen w-[377px] px-[16px] py-[24px]">
+        <div className="flex gap-[10px] mb-4">
+          <input
+            className="w-[280px] h-[40px] rounded-[6px] p-[6px] bg-white border border-black text-black"
+            placeholder="Add a new task .."
+            value={inputValue} // Төлөвтэй холбох
+            onChange={(e) => setInputValue(e.target.value)} // Бичих үед state-ийг шинэчлэх
+          />
+          <button
+            onClick={addTask} // 5. Товчлуур дээр дарахад функц ажиллана
+            className="w-[59px] h-[40px] rounded-[6px] p-[8px] bg-blue-500 text-white"
+          >
+            Add
+          </button>
+        </div>
+
+        <div className="flex gap-[24px] mb-4">
+          {categories.map((element, index) => (
+            <Button title={element.title} key={index} status={element.status} />
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-4">
+          {tasks.map((element, index) => (
+            <Task
+              title={element.title}
+              key={index}
+              isChecked={element.isChecked}
+              onDelete={() => deleteTask(index)}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

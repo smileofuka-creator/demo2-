@@ -10,7 +10,10 @@ let Task = (props) => {
           />
           <p className="text-gray-800 font-medium">{props.title}</p>
         </div>
-        <button className="hidden group-hover:block px-4 py-1 text-sm text-red-600 bg-red-50 hover:bg-red-100 rounded-lg ">
+        <button
+          onClick={props.onDelete}
+          className="hidden group-hover:block px-4 py-1 text-sm text-red-600 bg-red-50 hover:bg-red-100 rounded-lg "
+        >
           Delete
         </button>
       </div>
